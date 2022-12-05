@@ -5,7 +5,7 @@ from flask import request
 app = Flask(__name__)
 
 list_todo = []
-list_todo("We need to buy groceries")
+list_todo.append("We need to buy groceries")
 list_todo.append("We need to mow the lawn")
 list_todo.append("We need to wash the dishes")
 
