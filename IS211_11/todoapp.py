@@ -6,9 +6,7 @@ import re
 app = Flask(__name__)
 
 list_todo = [
-    "We need to buy groceries",
-    "We need to mow the lawn",
-    "We need to wash the dishes"
+    
 ]
 
 @app.route('/')
@@ -21,17 +19,8 @@ def todolist():
     return render_template('todolisttemplate.html', list_todo=list_todo)
 
 
-
-@app.route('/addtolist', methods=['POST', 'GET'])
+@app.route('/submit', methods=['POST', 'GET'])
 def todo():
-    if request.method == 'POST':
-        todo = request.form['todolist']
-        list_todo.append(todo)
-        print(list_todo)
-        return render_template('todolisttemplate.html', list_todo=list_todo)
-
-@app.route('/submit',methods= ['POST','GET'])
-def verifytodo():
     if request.method == 'POST':
         email = request.form['email']
         regex = r'\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b'
@@ -50,11 +39,11 @@ def verifytodo():
             return redirect(url_for("todolist"))
     
         else:
-            task = request.form['task']
-            list_todo.append(task)
+            todo = request.form['todolist']
+            list_todo.append(todo)
             print(list_todo)
             return render_template('todolisttemplate.html', list_todo=list_todo)
-    return redirect(url_for("todolist"))
+
 
 @app.route('/clear')
 def clearlist():
